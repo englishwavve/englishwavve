@@ -1,252 +1,244 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2821
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Wave</title>
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="bg">\
-<head>\
-<meta charset="UTF-8">\
-<meta name="viewport" content="width=device-width, initial-scale=1.0">\
-<title>English Wave</title>\
-\
-<style>\
-\
-body\{\
-font-family:Arial;\
-margin:0;\
-background:#f0f9ff;\
-\}\
-\
-/* LOGIN */\
-\
-#loginBox\{\
-text-align:center;\
-margin-top:100px;\
-\}\
-\
-input\{\
-padding:10px;\
-margin:10px;\
-width:250px;\
-\}\
-\
-/* SITE */\
-\
-#site\{\
-display:none;\
-\}\
-\
-header\{\
-background:linear-gradient(90deg,#0ea5e9,#22c55e);\
-color:white;\
-padding:30px;\
-text-align:center;\
-\}\
-\
-section\{\
-background:white;\
-margin:20px;\
-padding:20px;\
-border-radius:10px;\
-\}\
-\
-.post\{\
-background:#e0f2fe;\
-padding:10px;\
-margin:10px;\
-border-radius:5px;\
-\}\
-\
-button\{\
-background:#0ea5e9;\
-color:white;\
-border:none;\
-padding:10px;\
-border-radius:5px;\
-cursor:pointer;\
-\}\
-\
-button:hover\{\
-background:#0284c7;\
-\}\
-\
-.admin\{\
-background:#fef9c3;\
-\}\
-\
-</style>\
-\
-</head>\
-<body>\
-\
-\
-<div id="loginBox">\
-\
-<h2>English Wave Admin Login</h2>\
-\
-<input type="password" id="password" placeholder="\uc0\u1055 \u1072 \u1088 \u1086 \u1083 \u1072 ">\
-\
-<br>\
-\
-<button onclick="login()">\uc0\u1042 \u1093 \u1086 \u1076 </button>\
-\
-</div>\
-\
-\
-\
-<div id="site">\
-\
-\
-<header>\
-\
-<h1>English Wave</h1>\
-\
-<p>\uc0\u1059 \u1088 \u1086 \u1094 \u1080  \u1087 \u1086  \u1072 \u1085 \u1075 \u1083 \u1080 \u1081 \u1089 \u1082 \u1080  \u1077 \u1079 \u1080 \u1082 </p>\
-\
-</header>\
-\
-\
-\
-<section>\
-\
-<h2>\uc0\u1059 \u1088 \u1086 \u1094 \u1080 </h2>\
-\
-<p>\uc0\u1040 \u1085 \u1075 \u1083 \u1080 \u1081 \u1089 \u1082 \u1080  \u1079 \u1072  \u1076 \u1077 \u1094 \u1072 </p>\
-\
-<p>\uc0\u1040 \u1085 \u1075 \u1083 \u1080 \u1081 \u1089 \u1082 \u1080  \u1079 \u1072  \u1074 \u1098 \u1079 \u1088 \u1072 \u1089 \u1090 \u1085 \u1080 </p>\
-\
-<p>\uc0\u1055 \u1086 \u1076 \u1075 \u1086 \u1090 \u1086 \u1074 \u1082 \u1072  \u1079 \u1072  \u1044 \u1047 \u1048 </p>\
-\
-</section>\
-\
-\
-\
-<section>\
-\
-<h2>\uc0\u1041 \u1083 \u1086 \u1075 </h2>\
-\
-<div id="posts"></div>\
-\
-</section>\
-\
-\
-\
-<section class="admin">\
-\
-<h2>\uc0\u1040 \u1076 \u1084 \u1080 \u1085  \u1087 \u1072 \u1085 \u1077 \u1083 </h2>\
-\
-<input id="title" placeholder="\uc0\u1047 \u1072 \u1075 \u1083 \u1072 \u1074 \u1080 \u1077 ">\
-\
-<br>\
-\
-<textarea id="content" placeholder="\uc0\u1058 \u1077 \u1082 \u1089 \u1090 "></textarea>\
-\
-<br>\
-\
-<button onclick="addPost()">\uc0\u1044 \u1086 \u1073 \u1072 \u1074 \u1080 </button>\
-\
-</section>\
-\
-\
-</div>\
-\
-\
-\
-<script>\
-\
-/* PASSWORD */\
-\
-let adminPassword="1234";\
-\
-\
-function login()\{\
-\
-let pass=document.getElementById("password").value;\
-\
-if(pass===adminPassword)\{\
-\
-document.getElementById("loginBox").style.display="none";\
-\
-document.getElementById("site").style.display="block";\
-\
-\}\
-\
-else\{\
-\
-alert("\uc0\u1043 \u1088 \u1077 \u1096 \u1085 \u1072  \u1087 \u1072 \u1088 \u1086 \u1083 \u1072 ");\
-\
-\}\
-\
-\}\
-\
-\
-/* POSTS */\
-\
-let posts=JSON.parse(localStorage.getItem("posts"))||[];\
-\
-\
-function showPosts()\{\
-\
-let div=document.getElementById("posts");\
-\
-div.innerHTML="";\
-\
-\
-posts.forEach((post,index)=>\{\
-\
-div.innerHTML+=`\
-\
-<div class="post">\
-\
-<h3>$\{post.title\}</h3>\
-\
-<p>$\{post.content\}</p>\
-\
-<button onclick="deletePost($\{index\})">\uc0\u1048 \u1079 \u1090 \u1088 \u1080 \u1081 </button>\
-\
-</div>\
-\
-`;\
-\
-\});\
-\
-\}\
-\
-\
-function addPost()\{\
-\
-let title=document.getElementById("title").value;\
-\
-let content=document.getElementById("content").value;\
-\
-posts.push(\{title,content\});\
-\
-localStorage.setItem("posts",JSON.stringify(posts));\
-\
-showPosts();\
-\
-\}\
-\
-\
-function deletePost(index)\{\
-\
-posts.splice(index,1);\
-\
-localStorage.setItem("posts",JSON.stringify(posts));\
-\
-showPosts();\
-\
-\}\
-\
-\
-showPosts();\
-\
-</script>\
-\
-\
-</body>\
-</html>\
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f0f9ff;
 }
+
+/* LOGIN */
+
+#loginBox{
+text-align:center;
+margin-top:100px;
+}
+
+input{
+padding:10px;
+margin:10px;
+width:250px;
+}
+
+/* SITE */
+
+#site{
+display:none;
+}
+
+header{
+background:linear-gradient(90deg,#0ea5e9,#22c55e);
+color:white;
+padding:30px;
+text-align:center;
+}
+
+section{
+background:white;
+margin:20px;
+padding:20px;
+border-radius:10px;
+}
+
+.post{
+background:#e0f2fe;
+padding:10px;
+margin:10px;
+border-radius:5px;
+}
+
+button{
+background:#0ea5e9;
+color:white;
+border:none;
+padding:10px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0284c7;
+}
+
+.admin{
+background:#fef9c3;
+}
+
+</style>
+
+</head>
+<body>
+
+
+<div id="loginBox">
+
+<h2>English Wave Admin Login</h2>
+
+<input type="password" id="password" placeholder="Парола">
+
+<br>
+
+<button onclick="login()">Вход</button>
+
+</div>
+
+
+
+<div id="site">
+
+
+<header>
+
+<h1>English Wave</h1>
+
+<p>Уроци по английски език</p>
+
+</header>
+
+
+
+<section>
+
+<h2>Уроци</h2>
+
+<p>Английски за деца</p>
+
+<p>Английски за възрастни</p>
+
+<p>Подготовка за ДЗИ</p>
+
+</section>
+
+
+
+<section>
+
+<h2>Блог</h2>
+
+<div id="posts"></div>
+
+</section>
+
+
+
+<section class="admin">
+
+<h2>Админ панел</h2>
+
+<input id="title" placeholder="Заглавие">
+
+<br>
+
+<textarea id="content" placeholder="Текст"></textarea>
+
+<br>
+
+<button onclick="addPost()">Добави</button>
+
+</section>
+
+
+</div>
+
+
+
+<script>
+
+/* PASSWORD */
+
+let adminPassword="1234";
+
+
+function login(){
+
+let pass=document.getElementById("password").value;
+
+if(pass===adminPassword){
+
+document.getElementById("loginBox").style.display="none";
+
+document.getElementById("site").style.display="block";
+
+}
+
+else{
+
+alert("Грешна парола");
+
+}
+
+}
+
+
+/* POSTS */
+
+let posts=JSON.parse(localStorage.getItem("posts"))||[];
+
+
+function showPosts(){
+
+let div=document.getElementById("posts");
+
+div.innerHTML="";
+
+
+posts.forEach((post,index)=>{
+
+div.innerHTML+=`
+
+<div class="post">
+
+<h3>${post.title}</h3>
+
+<p>${post.content}</p>
+
+<button onclick="deletePost(${index})">Изтрий</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function addPost(){
+
+let title=document.getElementById("title").value;
+
+let content=document.getElementById("content").value;
+
+posts.push({title,content});
+
+localStorage.setItem("posts",JSON.stringify(posts));
+
+showPosts();
+
+}
+
+
+function deletePost(index){
+
+posts.splice(index,1);
+
+localStorage.setItem("posts",JSON.stringify(posts));
+
+showPosts();
+
+}
+
+
+showPosts();
+
+</script>
+
+
+</body>
+</html>
